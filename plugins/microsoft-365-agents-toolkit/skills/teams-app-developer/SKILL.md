@@ -17,7 +17,7 @@ description: >
 
 Build code-based Microsoft 365 agents and Teams apps (CEA, bot, tab, message extension) using the ATK CLI.
 
-> **Declarative Agents (DA):** Use the **`declarative-agent-developer`** skill — it owns all DA
+> **Declarative Agents:** Use the **`declarative-agent-developer`** skill — it owns all Declarative Agent
 > workflows including scaffolding, manifest editing, capability config, API/MCP plugins, OAuth,
 > localization, and deployment. This skill covers code-based project types only.
 

@@ -79,8 +79,8 @@ plugins/<plugin-name>/
   - Preview-only offline checks: `npm ci --prefix tests/workiq-guidance --ignore-scripts --no-audit --no-fund` then `npm --prefix tests/workiq-guidance test` (Node 22+). CI does not run models or live M365 operations. The public `workiq` package retains its existing routing policy and version; its SharePoint metadata documentation is consolidated separately.
   - Observed trace validation requires nonblank package-hash provenance, including direct validator calls; authoritative state claims are compared by property presence, including falsey values.
 
-- **microsoft-365-agents-toolkit** — Exactly two top-level skill directories for DA and Teams development:
-  - `declarative-agent-developer` — Delegate general DA development, lifecycle, and evaluation to WIQD. Widget implementation loads `workflows/widgets/workflow.md`; existing-server SSO loads `workflows/setup-sso-ui-widget/workflow.md`. For mixed tasks, invoke WIQD directly for the DA portion without recursively re-entering the parent skill.
+- **microsoft-365-agents-toolkit** — Exactly two top-level skill directories for Declarative Agent and Teams development:
+  - `declarative-agent-developer` — Delegate general Declarative Agent development, lifecycle, and evaluation to WIQD. Widget implementation loads `workflows/widgets/workflow.md`; existing-server SSO loads `workflows/setup-sso-ui-widget/workflow.md`. For mixed tasks, invoke WIQD directly for the Declarative Agent portion without recursively re-entering the parent skill.
   - `teams-app-developer` — Build, test, and deploy code-based Teams apps. Install/update requests load `workflows/install-atk/workflow.md`.
   - Widget, SSO, and installation assets live inside their owning skill. Existing execution scripts and implementation references are retained; these workflows are not discoverable skills.
   - The independent evaluator and legacy assets are removed. WIQD owns evaluation.

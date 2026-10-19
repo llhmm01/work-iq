@@ -2,7 +2,7 @@
 
 Supporting workflow of `declarative-agent-developer`, formerly `ui-widget-developer`.
 References to that former skill name identify this workflow. For agent scaffolding
-or general DA authoring, invoke WIQD directly rather than re-enter the parent skill.
+or general Declarative Agent authoring, invoke WIQD directly rather than re-enter the parent skill.
 The existing server, widget, and integration execution steps below are retained.
 
 For SSO-only requests on an existing server, follow

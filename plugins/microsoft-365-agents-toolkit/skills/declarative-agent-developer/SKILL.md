@@ -1,7 +1,7 @@
 ---
 name: declarative-agent-developer
 description: >
-  Develop Microsoft 365 Copilot declarative agents. Delegate DA authoring, manifests,
+  Develop Microsoft 365 Copilot declarative agents. Delegate Declarative Agent authoring, manifests,
   capabilities, API/MCP actions, authentication, localization, instruction review,
   validation, provisioning, publishing, and evaluation to the WIQD plugin's wiqd skill.
   Use bundled workflows for MCP server/widget implementation and existing widget-server
@@ -14,7 +14,7 @@ description: >
 
 # Declarative Agent Developer
 
-This is the DA entry point. WIQD owns general DA authoring, lifecycle, and evaluation.
+This is the Declarative Agent entry point. WIQD owns general Declarative Agent authoring, lifecycle, and evaluation.
 Bundled widget and SSO workflows retain implementation capabilities not supplied by WIQD.
 
 ## Required Routing
@@ -25,9 +25,9 @@ Select the route before inspecting the workspace or running commands:
 |---------|-------|
 | Implement an MCP server or interactive widget for Copilot | Read [widget development](workflows/widgets/workflow.md) |
 | Add Entra SSO to an existing widget MCP server | Read [widget SSO](workflows/setup-sso-ui-widget/workflow.md); do not restart widget creation |
-| General DA authoring, connecting an existing MCP endpoint, authentication configuration, lifecycle, or evaluation | Immediately delegate to WIQD as below |
+| General Declarative Agent authoring, connecting an existing MCP endpoint, authentication configuration, lifecycle, or evaluation | Immediately delegate to WIQD as below |
 
-For mixed requests, split work by these routes. Invoke WIQD directly for the DA portion,
+For mixed requests, split work by these routes. Invoke WIQD directly for the Declarative Agent portion,
 then continue the applicable local workflow. Do not re-enter this skill for a subtask:
 references to `declarative-agent-developer` inside the bundled workflows mean its WIQD
 delegation route, not restarting widget/SSO routing.
@@ -37,7 +37,7 @@ delegation route, not restarting widget/SSO routing.
 Invoke the WIQD plugin's `wiqd` skill with:
 
 - the user's complete original request as context; for mixed requests, explicitly scope
-  WIQD's task to the DA portion and reserve widget/server implementation for the local workflow;
+  WIQD's task to the Declarative Agent portion and reserve widget/server implementation for the local workflow;
 - relevant context already provided by the user; and
 - any explicit constraints or desired outcomes.
 

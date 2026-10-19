@@ -1,6 +1,6 @@
 # M365 Agents Toolkit
 
-DA development and evaluation through WIQD, code-based Teams apps through ATK,
+Declarative Agent development and evaluation through WIQD, code-based Teams apps through ATK,
 and MCP widget development with its existing SSO workflow.
 
 ## Installation
@@ -21,9 +21,9 @@ then restart Copilot CLI so its `wiqd` skill is loaded:
 copilot plugin install wiqd@awesome-copilot
 ```
 
-General DA authoring, lifecycle, and evaluation delegate to WIQD without a manual fallback.
+General Declarative Agent authoring, lifecycle, and evaluation delegate to WIQD without a manual fallback.
 Widget and SSO requests load bundled implementation workflows; their existing execution
-steps are retained. Mixed requests use WIQD for general DA work and the local workflow
+steps are retained. Mixed requests use WIQD for general Declarative Agent work and the local workflow
 for widget/server work. Teams development continues to use ATK independently.
 
 ## Usage
@@ -58,7 +58,7 @@ which owns CLI setup, dataset generation, execution, analysis, and regression co
 
 | Skill | What It Does |
 |-------|-------------|
-| [**declarative-agent-developer**](./skills/declarative-agent-developer/SKILL.md) | Delegate DA development, lifecycle, and evaluation to WIQD; route widget and SSO implementation to bundled workflows |
+| [**declarative-agent-developer**](./skills/declarative-agent-developer/SKILL.md) | Delegate Declarative Agent development, lifecycle, and evaluation to WIQD; route widget and SSO implementation to bundled workflows |
 | [**teams-app-developer**](./skills/teams-app-developer/SKILL.md) | Build, test, and deploy code-based Teams apps; handle ATK setup |
 
 Only these two directories remain directly under `skills/`:
@@ -78,7 +78,7 @@ skills/
 
 - [Widget development](./skills/declarative-agent-developer/workflows/widgets/workflow.md)
   and [SSO](./skills/declarative-agent-developer/workflows/setup-sso-ui-widget/workflow.md)
-  are DA supporting workflows, not independent skills. Their implementation references
+  are Declarative Agent supporting workflows, not independent skills. Their implementation references
   and scripts move together without changing the execution chain.
 - [ATK setup](./skills/teams-app-developer/workflows/install-atk/workflow.md) is a Teams
   supporting workflow.

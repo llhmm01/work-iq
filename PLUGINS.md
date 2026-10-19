@@ -79,7 +79,7 @@ copilot plugin uninstall workiq-productivity
 |---|--------|--------|-------------|
 | 1 | [**workiq**](#workiq) | 1 | Full WorkIQ tool surface — agentic queries plus direct M365 reads and writes |
 | 2 | [**workiq-preview**](#workiq-preview) | 1 | Preview retrieve-first context, intentional delegation, and exact M365 reads and writes |
-| 3 | [**microsoft-365-agents-toolkit**](#microsoft-365-agents-toolkit) | 2 | DA development and evaluation through WIQD, Teams apps, and bundled widget workflows |
+| 3 | [**microsoft-365-agents-toolkit**](#microsoft-365-agents-toolkit) | 2 | Declarative Agent development and evaluation through WIQD, Teams apps, and bundled widget workflows |
 | 4 | [**workiq-productivity**](#workiq-productivity) | 10 | Read-only productivity insights across M365 |
 
 ---
@@ -162,7 +162,7 @@ Installing the plugin does not enable tenant-gated retrieval.
 
 ## microsoft-365-agents-toolkit
 
-> DA development and evaluation through WIQD, code-based Teams apps through ATK,
+> Declarative Agent development and evaluation through WIQD, code-based Teams apps through ATK,
 > and MCP widget development with its existing SSO workflow.
 
 **Install:** `/plugin install microsoft-365-agents-toolkit@work-iq`
@@ -172,7 +172,7 @@ Installing the plugin does not enable tenant-gated retrieval.
 
 | Skill | Description |
 |-------|-------------|
-| [**declarative-agent-developer**](./plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer/SKILL.md) | Delegate DA development, lifecycle, and evaluation to WIQD; load bundled widget/SSO implementation workflows |
+| [**declarative-agent-developer**](./plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer/SKILL.md) | Delegate Declarative Agent development, lifecycle, and evaluation to WIQD; load bundled widget/SSO implementation workflows |
 | [**teams-app-developer**](./plugins/microsoft-365-agents-toolkit/skills/teams-app-developer/SKILL.md) | Build, test, and deploy code-based Teams apps, including ATK setup |
 
 Installation, widgets, and SSO are supporting workflows inside the two skills, not independent skills. See the

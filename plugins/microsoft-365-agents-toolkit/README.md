@@ -1,6 +1,7 @@
 # M365 Agents Toolkit
 
-Toolkit for building Microsoft 365 Copilot declarative agents.
+DA development and evaluation through WIQD, code-based Teams apps through ATK,
+and MCP widget development with its existing SSO workflow.
 
 ## Installation
 
@@ -13,15 +14,17 @@ Toolkit for building Microsoft 365 Copilot declarative agents.
 ## Declarative Agent prerequisite
 
 The Work IQ Dev Tools (WIQD) Copilot plugin must be installed and enabled before using the
-`declarative-agent-developer` skill. Install the plugin from the Awesome Copilot marketplace,
+`declarative-agent-developer` skill, including evaluation. Install the official plugin,
 then restart Copilot CLI so its `wiqd` skill is loaded:
 
 ```bash
 copilot plugin install wiqd@awesome-copilot
 ```
 
-The entry skill does not invoke the WIQD or ATK CLI directly and has no fallback when the WIQD
-plugin is unavailable. Other ATK workflows continue to use the ATK CLI and do not require WIQD.
+General DA authoring, lifecycle, and evaluation delegate to WIQD without a manual fallback.
+Widget and SSO requests load bundled implementation workflows; their existing execution
+steps are retained. Mixed requests use WIQD for general DA work and the local workflow
+for widget/server work. Teams development continues to use ATK independently.
 
 ## Usage
 
@@ -48,20 +51,41 @@ plugin is unavailable. Other ATK workflows continue to use the ATK CLI and do no
 "I changed my agent instructions. Re-run the evals with stable concurrency and compare the new results to .evals\baseline.json"
 ```
 
-The evaluator skill uses the public preview M365 Copilot eval CLI through package-scoped `npx`. Learn more about the preview, docs, issues, and feedback channels in the public [m365-copilot-eval repository](https://github.com/microsoft/m365-copilot-eval).
-
-```powershell
-npx -y --package @microsoft/m365-copilot-eval@latest runevals --prompts-file evals\evals.json --output .evals\latest.json
-```
+Evaluation requests go through `declarative-agent-developer` to WIQD's eval workflow,
+which owns CLI setup, dataset generation, execution, analysis, and regression comparison.
 
 ## Skills
 
 | Skill | What It Does |
 |-------|-------------|
-| [**install-atk**](./skills/install-atk/SKILL.md) | Install or update the ATK CLI and VS Code extension |
-| [**declarative-agent-developer**](./skills/declarative-agent-developer/SKILL.md) | Entry point that delegates Declarative Agent requests to the WIQD plugin |
-| [**ui-widget-developer**](./skills/ui-widget-developer/SKILL.md) | Build MCP servers with OpenAI Apps SDK widget rendering for Copilot Chat |
-| [**m365-agent-evaluator**](./skills/m365-agent-evaluator/SKILL.md) | Generate, run, and analyze evaluation suites for M365 Copilot declarative agents |
+| [**declarative-agent-developer**](./skills/declarative-agent-developer/SKILL.md) | Delegate DA development, lifecycle, and evaluation to WIQD; route widget and SSO implementation to bundled workflows |
+| [**teams-app-developer**](./skills/teams-app-developer/SKILL.md) | Build, test, and deploy code-based Teams apps; handle ATK setup |
+
+Only these two directories remain directly under `skills/`:
+
+```text
+skills/
+  declarative-agent-developer/
+    SKILL.md
+    workflows/
+      widgets/
+      setup-sso-ui-widget/
+  teams-app-developer/
+    SKILL.md
+    workflows/
+      install-atk/
+```
+
+- [Widget development](./skills/declarative-agent-developer/workflows/widgets/workflow.md)
+  and [SSO](./skills/declarative-agent-developer/workflows/setup-sso-ui-widget/workflow.md)
+  are DA supporting workflows, not independent skills. Their implementation references
+  and scripts move together without changing the execution chain.
+- [ATK setup](./skills/teams-app-developer/workflows/install-atk/workflow.md) is a Teams
+  supporting workflow.
+- The independent evaluator and its legacy assets are removed; WIQD owns evaluation.
+
+Ask the corresponding development skill instead of using the former widget, SSO,
+installation, or evaluator skill names. Restart the host after updating.
 
 ## License
 

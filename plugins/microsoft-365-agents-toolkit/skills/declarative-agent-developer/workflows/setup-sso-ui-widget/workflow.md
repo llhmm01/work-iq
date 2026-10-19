@@ -1,24 +1,9 @@
----
-name: setup-sso-ui-widget
-description: >
-  Adds Microsoft Entra SSO (single sign-on, no OBO) to a Microsoft 365 Copilot declarative
-  agent whose tools are served by an MCP server — for BOTH widget standards:
-  (1) the MCP Apps standard (from create-mcp-app / the MCP Apps SDK): a plugin manifest such as
-  readiness_plugin.json (or another *_plugin.json with a runtimes[] block) and an EXPRESS-based
-  MCP server; and (2) the OpenAI Apps (OAI Apps) layout from the ui-widget-developer skill:
-  appPackage/mcpPlugin.json and a raw-http MCP server. When the layout is ambiguous, DEFAULT to
-  the MCP Apps standard (most projects use it). The skill auto-detects the layout, reuses the
-  existing named devtunnel + env/.env.local (never creates a second tunnel), registers the Entra
-  app + ATK OAuth (MicrosoftEntra), patches the plugin manifest's runtimes[] auth to
-  OAuthPluginVault, injects a minimal JWKS bearer-token guard into the existing server (an EXPRESS
-  middleware for MCP Apps, or a raw-http guard WITHOUT rewriting to Express for OAI Apps),
-  validates, sideloads, and prints an app-registration summary. SSO only — no OBO.
-  Triggered by: "add sso to my mcp server", "wire entra sso for my copilot agent",
-  "setup sso for mcp apps", "add sso after create-mcp-app", "add sso after ui-widget-developer",
-  "add entra auth to my express mcp server", "configure only sso no obo"
----
-
 # Setup SSO for a ui-widget-developer Agent (Minimal-Touch, No OBO)
+
+Supporting workflow of `declarative-agent-developer`; not a separate skill.
+References to the former `ui-widget-developer` mean the sibling widget workflow.
+All scripts remain in this workflow directory's `scripts/` folder and retain their
+existing behavior.
 
 > **Why this exists.** Copilot MCP-server agents come in two widget-standard shapes, and this
 > skill supports **both** (defaulting to **MCP Apps** when the layout is ambiguous):
@@ -73,9 +58,9 @@ This skill expects a project produced by `ui-widget-developer`.
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 ```
 
-**Set `$SsoScripts`** to this skill's `scripts/` folder (absolute path). Every phase runs its logic via `pwsh -NoProfile -File "$SsoScripts/<name>.ps1"` — the scripts carry state through `env/.env.local`, so you rarely pass arguments:
+**Set `$SsoScripts`** to the `scripts/` folder beside this workflow document, not the parent skill's root (absolute path). Every phase runs its logic via `pwsh -NoProfile -File "$SsoScripts/<name>.ps1"` — the scripts carry state through `env/.env.local`, so you rarely pass arguments:
 ```powershell
-$SsoScripts = "<absolute path to this skill>/scripts"
+$SsoScripts = "<absolute path to the setup-sso-ui-widget workflow directory>/scripts"
 ```
 
 | Tool | Check | Auto-install |
@@ -175,7 +160,7 @@ After installing any tool, refresh PATH with the snippet above. Tag CLI usage on
 - [Configure MCP server authorization in Azure App Service](https://learn.microsoft.com/azure/app-service/configure-authentication-mcp)
 
 ## ⚠️ Caveat — if your dev tunnel URL changes later
-The OAuth registration's base URL, the Application ID URI, and the Entra app's `identifierUris` are all tied to the **current dev tunnel domain**. If that tunnel URL changes, authentication will break. Re-sync with `pwsh -NoProfile -File "$SsoScripts/resync-tunnel-url.ps1"` (or just re-run `/setup-sso-ui-widget`) so the OAuth base URL + App ID URI match the new tunnel, then restart the server and re-test.
+The OAuth registration's base URL, the Application ID URI, and the Entra app's `identifierUris` are all tied to the **current dev tunnel domain**. If that tunnel URL changes, authentication will break. Re-sync with `pwsh -NoProfile -File "$SsoScripts/resync-tunnel-url.ps1"` (or re-run this SSO workflow) so the OAuth base URL + App ID URI match the new tunnel, then restart the server and re-test.
 
 ---
 

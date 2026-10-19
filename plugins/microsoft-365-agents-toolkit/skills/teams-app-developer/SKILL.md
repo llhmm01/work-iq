@@ -5,10 +5,12 @@ description: >
   USE FOR: Custom Engine Agents (CEA), Teams bots, tabs, message extensions, Agents Playground
   local testing, Azure provision/deploy, Slack-to-Teams migration, cross-platform bot development,
   Block Kit to Adaptive Cards conversion, AI model integration (OpenAI/Azure/Anthropic/Bedrock).
+  Also use for installing or updating the ATK CLI and VS Code extension.
   DO NOT USE FOR: declarative agents — use the `declarative-agent-developer` skill instead.
   Triggers: "build a teams bot", "custom engine agent", "CEA", "teams agent", "tab app",
   "message extension", "test with agents playground", "provision to azure", "deploy to azure",
-  "migrate slack bot", "slack to teams", "convert block kit", "add azure openai to my bot"
+  "migrate slack bot", "slack to teams", "convert block kit", "add azure openai to my bot",
+  "install atk", "update atk", "install agents toolkit", "install atk extension"
 ---
 
 # Teams App Developer Skill
@@ -52,14 +54,16 @@ Build code-based Microsoft 365 agents and Teams apps (CEA, bot, tab, message ext
 
 ## ATK CLI Setup
 
-Before any ATK commands, verify the CLI is available:
+For install/update requests, follow [ATK setup](workflows/install-atk/workflow.md) without
+scaffolding a project. For development, first verify the CLI:
 
 ```bash
-atk --version  # Must be > 1.1.5-beta
+npx -y --package @microsoft/m365agentstoolkit-cli atk --version
 ```
 
-If ATK is not found or the version is too old → **use the `install-atk` skill** to install or
-update it, then return here to continue.
+If unavailable, follow [ATK setup](workflows/install-atk/workflow.md), then continue here.
+Other references abbreviate the package-scoped invocation as `atk`; expand that prefix
+when executing commands rather than assume `npx` installed a global executable.
 
 ## CLI Global Options
 

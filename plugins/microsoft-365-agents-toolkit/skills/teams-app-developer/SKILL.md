@@ -5,19 +5,17 @@ description: >
   USE FOR: Custom Engine Agents (CEA), Teams bots, tabs, message extensions, Agents Playground
   local testing, Azure provision/deploy, Slack-to-Teams migration, cross-platform bot development,
   Block Kit to Adaptive Cards conversion, AI model integration (OpenAI/Azure/Anthropic/Bedrock).
-  Also use for installing or updating the ATK CLI and VS Code extension.
   DO NOT USE FOR: declarative agents — use the `declarative-agent-developer` skill instead.
   Triggers: "build a teams bot", "custom engine agent", "CEA", "teams agent", "tab app",
   "message extension", "test with agents playground", "provision to azure", "deploy to azure",
-  "migrate slack bot", "slack to teams", "convert block kit", "add azure openai to my bot",
-  "install atk", "update atk", "install agents toolkit", "install atk extension"
+  "migrate slack bot", "slack to teams", "convert block kit", "add azure openai to my bot"
 ---
 
 # Teams App Developer Skill
 
 Build code-based Microsoft 365 agents and Teams apps (CEA, bot, tab, message extension) using the ATK CLI.
 
-> **Declarative Agents:** Use the **`declarative-agent-developer`** skill — it owns all Declarative Agent
+> **Declarative Agents (DA):** Use the **`declarative-agent-developer`** skill — it owns all DA
 > workflows including scaffolding, manifest editing, capability config, API/MCP plugins, OAuth,
 > localization, and deployment. This skill covers code-based project types only.
 
@@ -54,16 +52,14 @@ Build code-based Microsoft 365 agents and Teams apps (CEA, bot, tab, message ext
 
 ## ATK CLI Setup
 
-For install/update requests, follow [ATK setup](workflows/install-atk/workflow.md)
-without scaffolding a project. For development, first verify the CLI:
+Before any ATK commands, verify the CLI is available:
 
 ```bash
-npx -y --package @microsoft/m365agentstoolkit-cli atk --version
+atk --version  # Must be > 1.1.5-beta
 ```
 
-If unavailable, follow [ATK setup](workflows/install-atk/workflow.md), then continue here.
-Other references abbreviate the package-scoped invocation as `atk`; expand that prefix
-when executing commands rather than assume `npx` installed a global executable.
+If ATK is not found or the version is too old → **use the `install-atk` skill** to install or
+update it, then return here to continue.
 
 ## CLI Global Options
 

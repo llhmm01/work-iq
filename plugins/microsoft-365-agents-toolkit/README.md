@@ -56,17 +56,17 @@ which owns CLI setup, dataset generation, execution, analysis, and regression co
 
 | Skill | What It Does |
 |-------|-------------|
+| [**install-atk**](./skills/install-atk/SKILL.md) | Install or update the ATK CLI and VS Code extension |
 | [**declarative-agent-developer**](./skills/declarative-agent-developer/SKILL.md) | Delegate complete Declarative Agent requests, including evaluation, to WIQD |
-| [**teams-app-developer**](./skills/teams-app-developer/SKILL.md) | Build, test, and deploy code-based Teams apps; handle ATK setup |
+| [**teams-app-developer**](./skills/teams-app-developer/SKILL.md) | Build, test, and deploy code-based Teams apps |
 | [**ui-widget-developer**](./skills/ui-widget-developer/SKILL.md) | Build MCP servers with OpenAI Apps SDK widget rendering for Copilot Chat |
 | [**setup-sso-ui-widget**](./skills/setup-sso-ui-widget/SKILL.md) | Add SSO to an existing widget MCP server; existing workflow retained |
 
-## Scope of this consolidation
+## Scope of this change
 
-- ATK installation is now [a supporting Teams workflow](./skills/teams-app-developer/workflows/install-atk/workflow.md).
 - The independent evaluator and its legacy assets are removed; WIQD owns evaluation.
-- Widget and SSO remain independent skills, with their original directories, references,
-  scripts, and execution flows unchanged. No local widget/SSO routing is added to the
+- Installation, Teams, widget, and SSO skills retain their original directories, references,
+  scripts, and execution flows. No local widget/SSO routing is added to the
   Declarative Agent entry point.
 
 Restart the host session after updating the plugin.

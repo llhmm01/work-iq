@@ -80,11 +80,12 @@ plugins/<plugin-name>/
   - Observed trace validation requires nonblank package-hash provenance, including direct validator calls; authoritative state claims are compared by property presence, including falsey values.
 
 - **microsoft-365-agents-toolkit** — Toolkit for building M365 Copilot declarative agents. Bundles:
+  - `install-atk` skill — Install or update the M365 Agents Toolkit CLI and VS Code extension
   - `declarative-agent-developer` skill — Entry point that delegates complete Declarative Agent requests, including evaluation, to the separately installed WIQD plugin's `wiqd` skill
-  - `teams-app-developer` skill — Build, test, and deploy code-based Teams apps: bots, CEA, tabs, message extensions, Agents Playground, Azure provision/deploy, and Slack-to-Teams migration. Install/update requests load `workflows/install-atk/workflow.md`.
+  - `teams-app-developer` skill — Build, test, and deploy code-based Teams apps: bots, CEA, tabs, message extensions, Agents Playground, Azure provision/deploy, and Slack-to-Teams migration
   - `ui-widget-developer` skill — Build MCP servers with OpenAI Apps SDK widget rendering for Copilot Chat
   - `setup-sso-ui-widget` skill — Existing widget-server SSO. This skill and `ui-widget-developer`, including their directories, references, and scripts, remain unchanged.
-  - Independent evaluation is removed; use WIQD's eval workflow. ATK installation is a supporting Teams workflow, not a separate skill.
+  - Independent evaluation is removed; use WIQD's eval workflow. Installation, Teams, widget, and SSO skills retain their original behavior.
 
 - **workiq-productivity** — Read-only WorkIQ productivity insights. Bundles:
   - `action-item-extractor` skill — Extract action items with owners, deadlines, and priorities

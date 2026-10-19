@@ -79,7 +79,7 @@ copilot plugin uninstall workiq-productivity
 |---|--------|--------|-------------|
 | 1 | [**workiq**](#workiq) | 1 | Full WorkIQ tool surface — agentic queries plus direct M365 reads and writes |
 | 2 | [**workiq-preview**](#workiq-preview) | 1 | Preview retrieve-first context, intentional delegation, and exact M365 reads and writes |
-| 3 | [**microsoft-365-agents-toolkit**](#microsoft-365-agents-toolkit) | 2 | Declarative Agent development and evaluation through WIQD, Teams apps, and bundled widget workflows |
+| 3 | [**microsoft-365-agents-toolkit**](#microsoft-365-agents-toolkit) | 4 | Declarative Agent development and evaluation through WIQD, Teams apps, and existing widget/SSO skills |
 | 4 | [**workiq-productivity**](#workiq-productivity) | 10 | Read-only productivity insights across M365 |
 
 ---
@@ -162,8 +162,7 @@ Installing the plugin does not enable tenant-gated retrieval.
 
 ## microsoft-365-agents-toolkit
 
-> Declarative Agent development and evaluation through WIQD, code-based Teams apps through ATK,
-> and MCP widget development with its existing SSO workflow.
+> Toolkit for building and evaluating Microsoft 365 Copilot declarative agents — scaffolding, JSON manifest authoring, capability configuration, deployment, and eval workflows.
 
 **Install:** `/plugin install microsoft-365-agents-toolkit@work-iq`
 **Source:** [`plugins/microsoft-365-agents-toolkit/`](./plugins/microsoft-365-agents-toolkit/)
@@ -172,11 +171,13 @@ Installing the plugin does not enable tenant-gated retrieval.
 
 | Skill | Description |
 |-------|-------------|
-| [**declarative-agent-developer**](./plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer/SKILL.md) | Delegate Declarative Agent development, lifecycle, and evaluation to WIQD; load bundled widget/SSO implementation workflows |
+| [**declarative-agent-developer**](./plugins/microsoft-365-agents-toolkit/skills/declarative-agent-developer/SKILL.md) | Delegate complete Declarative Agent requests, including evaluation, to WIQD |
 | [**teams-app-developer**](./plugins/microsoft-365-agents-toolkit/skills/teams-app-developer/SKILL.md) | Build, test, and deploy code-based Teams apps, including ATK setup |
+| [**ui-widget-developer**](./plugins/microsoft-365-agents-toolkit/skills/ui-widget-developer/SKILL.md) | Build MCP servers with OpenAI Apps SDK widget rendering for Copilot Chat |
+| [**setup-sso-ui-widget**](./plugins/microsoft-365-agents-toolkit/skills/setup-sso-ui-widget/SKILL.md) | Add SSO to an existing widget MCP server; existing workflow retained |
 
-Installation, widgets, and SSO are supporting workflows inside the two skills, not independent skills. See the
-[plugin README](./plugins/microsoft-365-agents-toolkit/README.md) for their locations.
+ATK installation is [a supporting Teams workflow](./plugins/microsoft-365-agents-toolkit/skills/teams-app-developer/workflows/install-atk/workflow.md).
+Independent evaluation is removed in favor of WIQD. Widget and SSO skills are unchanged.
 
 ### Example prompts
 

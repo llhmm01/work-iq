@@ -1,13 +1,18 @@
+---
+name: ui-widget-developer
+description: |
+  Build MCP servers for Copilot Chat using the OpenAI Apps SDK or MCP Apps SDK widget rendering support (any language). Use this skill when:
+  - Creating MCP servers that integrate with M365 Copilot declarative agents
+  - Building rich interactive widgets (React + Fluent UI) that render in Copilot Chat
+  - Implementing tools that return structuredContent for widget rendering
+  - Adapting an existing MCP server to support Copilot widget rendering
+  - Setting up devtunnels for localhost MCP server exposure
+  - Configuring mcpPlugin.json manifests with RemoteMCPServer runtime
+  Do NOT use this skill for general agent development (scaffolding, manifests, deployment) — use declarative-agent-developer instead. This skill is ONLY for MCP server + widget development.
+  Triggers: "MCP server for Copilot", "OpenAI Apps SDK", "Copilot widget", "structuredContent", "MCP plugin", "devtunnels MCP", "OAI app", "widget rendering", "UI widget"
+---
+
 # Copilot MCP Server Development
-
-Supporting workflow of `declarative-agent-developer`, formerly `ui-widget-developer`.
-References to that former skill name identify this workflow. For agent scaffolding
-or general Declarative Agent authoring, invoke WIQD directly rather than re-enter the parent skill.
-The existing server, widget, and integration execution steps below are retained.
-
-For SSO-only requests on an existing server, follow
-[the SSO workflow](../setup-sso-ui-widget/workflow.md) instead of the widget-creation
-steps below. Its existing scripts and execution sequence are unchanged.
 
 ## Telemetry Tagging
 
@@ -104,7 +109,7 @@ If the generated widget does not include React entry files (for example `widgets
 
 **NO RAW HTML-ONLY WIDGETS (DEFAULT):** Do not implement app content directly with static HTML templates and inline JS as the final widget solution. A minimal shell HTML file is allowed only as a loader for built React assets. Raw/self-contained HTML-only widgets are allowed only when the user explicitly requests a non-React prototype.
 
-**SSO HANDOFF (REQUIRED AT COMPLETION):** Once the ui-widget agent is fully scaffolded, running, and provisioned, your final completion summary MUST end by offering the optional SSO next step — see [Next Step — Add SSO](#next-step--add-sso-optional). List it in your "next steps" and offer the [SSO workflow](../setup-sso-ui-widget/workflow.md). Do NOT omit this offer, even if you also list other suggestions.
+**SSO HANDOFF (REQUIRED AT COMPLETION):** Once the ui-widget agent is fully scaffolded, running, and provisioned, your final completion summary MUST end by offering the optional SSO next step — see [Next Step — Add SSO](#next-step--add-sso-optional). List it in your "next steps" and ask the user if they want to wire Entra SSO via the `setup-sso-ui-widget` skill. Do NOT omit this offer, even if you also list other suggestions.
 
 **BACKGROUND PROCESSES:** MCP server and devtunnel MUST be spawned as independent OS processes — NOT run inside the agent's shell session. `isBackground: true`, `mode: "async"`, and `Start-Job` all run inside the agent's shell session and will be killed between messages. The only reliable approach is to spawn a detached OS process.
 
@@ -425,9 +430,9 @@ Key points:
 
 ## Next Step — Add SSO (optional)
 
-Once the ui-widget agent is scaffolded, running, and provisioned, you can add **Entra SSO** — so your MCP tools receive the signed-in user's verified identity — with the bundled workflow:
+Once the ui-widget agent is scaffolded, running, and provisioned, you can add **Entra SSO** — so your MCP tools receive the signed-in user's verified identity — with the companion skill in this same plugin:
 
-▶ **[Add SSO](../setup-sso-ui-widget/workflow.md)** — registers an Entra app, reuses your existing dev tunnel, injects a minimal JWKS token guard into your MCP server, wires `mcpPlugin.json` auth, and sideloads. SSO only, no OBO. Run this workflow from the project root.
+▶ **`setup-sso-ui-widget`** — registers an Entra app, reuses your existing dev tunnel, injects a minimal JWKS token guard into your MCP server, wires `mcpPlugin.json` auth, and sideloads. SSO only, no OBO. (Run `/setup-sso-ui-widget` from the project root.)
 
 **Tell the user** (after the build/provision completes):
-> **Your ui-widget agent is ready.** 🎉 Want me to wire up **SSO** next, so your tools get the signed-in user's identity? I can run the bundled **SSO workflow** — just say the word.
+> **Your ui-widget agent is ready.** 🎉 Want me to wire up **SSO** next, so your tools get the signed-in user's identity? I can run the **`setup-sso-ui-widget`** skill — just say the word.

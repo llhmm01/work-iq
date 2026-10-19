@@ -1,6 +1,6 @@
 # How SSO Works in a ui-widget Agent (Concepts, Behavior, Next Steps)
 
-> Companion to [the SSO workflow](../workflow.md). The workflow runs 11 phases of
+> Companion to `../SKILL.md`. The main skill is procedural — it runs 11 phases of
 > commands. This document explains **what those phases actually build**, what SSO gives
 > you (and what it does not), how a token flows end-to-end at runtime, and how to go
 > further (OBO / Microsoft Graph) once SSO is in place. Read this first if you want the
@@ -40,7 +40,7 @@ Nothing more, nothing less.
 
 ## 2. The four moving parts the skill wires together
 
-The phases in [the SSO workflow](../workflow.md) each configure one piece of the same trust chain:
+The phases in `SKILL.md` each configure one piece of the same trust chain:
 
 1. **Entra app registration** (Phases 3 & 5) — declares your API to Azure AD. It exposes a
    delegated scope `access_as_user` under an **Application ID URI** (e.g.

@@ -1,7 +1,6 @@
 # Detect + Gather Inputs (Phases 0, 2)
 
-> All scripts live in this SSO workflow's `../scripts/` folder, relative to this reference.
-> Set `$SsoScripts` once to that folder's
+> All scripts live in the skill's `scripts/` folder. Set `$SsoScripts` once to that folder's
 > absolute path, then invoke each script with `pwsh -NoProfile -File "$SsoScripts/<name>.ps1"`.
 > State flows between phases through `env/.env.local`, so the scripts need almost no arguments.
 

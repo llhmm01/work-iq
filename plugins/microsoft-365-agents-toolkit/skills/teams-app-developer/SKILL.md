@@ -54,8 +54,8 @@ Build code-based Microsoft 365 agents and Teams apps (CEA, bot, tab, message ext
 
 ## ATK CLI Setup
 
-For install/update requests, follow [ATK setup](workflows/install-atk/workflow.md) without
-scaffolding a project. For development, first verify the CLI:
+For install/update requests, follow [ATK setup](workflows/install-atk/workflow.md)
+without scaffolding a project. For development, first verify the CLI:
 
 ```bash
 npx -y --package @microsoft/m365agentstoolkit-cli atk --version

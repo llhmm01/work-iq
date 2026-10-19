@@ -1,7 +1,7 @@
 # M365 Agents Toolkit
 
-Declarative Agent development and evaluation through WIQD, code-based Teams apps through ATK,
-and MCP widget development with its existing SSO workflow.
+Toolkit for Declarative Agent development and evaluation through WIQD, code-based
+Teams apps, and existing widget/SSO workflows.
 
 ## Installation
 
@@ -14,17 +14,15 @@ and MCP widget development with its existing SSO workflow.
 ## Declarative Agent prerequisite
 
 The Work IQ Dev Tools (WIQD) Copilot plugin must be installed and enabled before using the
-`declarative-agent-developer` skill, including evaluation. Install the official plugin,
+`declarative-agent-developer` skill, including evaluation. Install the plugin from the Awesome Copilot marketplace,
 then restart Copilot CLI so its `wiqd` skill is loaded:
 
 ```bash
 copilot plugin install wiqd@awesome-copilot
 ```
 
-General Declarative Agent authoring, lifecycle, and evaluation delegate to WIQD without a manual fallback.
-Widget and SSO requests load bundled implementation workflows; their existing execution
-steps are retained. Mixed requests use WIQD for general Declarative Agent work and the local workflow
-for widget/server work. Teams development continues to use ATK independently.
+The entry skill does not invoke the WIQD or ATK CLI directly and has no fallback when the WIQD
+plugin is unavailable. Other ATK workflows continue to use the ATK CLI and do not require WIQD.
 
 ## Usage
 
@@ -58,34 +56,20 @@ which owns CLI setup, dataset generation, execution, analysis, and regression co
 
 | Skill | What It Does |
 |-------|-------------|
-| [**declarative-agent-developer**](./skills/declarative-agent-developer/SKILL.md) | Delegate Declarative Agent development, lifecycle, and evaluation to WIQD; route widget and SSO implementation to bundled workflows |
+| [**declarative-agent-developer**](./skills/declarative-agent-developer/SKILL.md) | Delegate complete Declarative Agent requests, including evaluation, to WIQD |
 | [**teams-app-developer**](./skills/teams-app-developer/SKILL.md) | Build, test, and deploy code-based Teams apps; handle ATK setup |
+| [**ui-widget-developer**](./skills/ui-widget-developer/SKILL.md) | Build MCP servers with OpenAI Apps SDK widget rendering for Copilot Chat |
+| [**setup-sso-ui-widget**](./skills/setup-sso-ui-widget/SKILL.md) | Add SSO to an existing widget MCP server; existing workflow retained |
 
-Only these two directories remain directly under `skills/`:
+## Scope of this consolidation
 
-```text
-skills/
-  declarative-agent-developer/
-    SKILL.md
-    workflows/
-      widgets/
-      setup-sso-ui-widget/
-  teams-app-developer/
-    SKILL.md
-    workflows/
-      install-atk/
-```
-
-- [Widget development](./skills/declarative-agent-developer/workflows/widgets/workflow.md)
-  and [SSO](./skills/declarative-agent-developer/workflows/setup-sso-ui-widget/workflow.md)
-  are Declarative Agent supporting workflows, not independent skills. Their implementation references
-  and scripts move together without changing the execution chain.
-- [ATK setup](./skills/teams-app-developer/workflows/install-atk/workflow.md) is a Teams
-  supporting workflow.
+- ATK installation is now [a supporting Teams workflow](./skills/teams-app-developer/workflows/install-atk/workflow.md).
 - The independent evaluator and its legacy assets are removed; WIQD owns evaluation.
+- Widget and SSO remain independent skills, with their original directories, references,
+  scripts, and execution flows unchanged. No local widget/SSO routing is added to the
+  Declarative Agent entry point.
 
-Ask the corresponding development skill instead of using the former widget, SSO,
-installation, or evaluator skill names. Restart the host after updating.
+Restart the host session after updating the plugin.
 
 ## License
 
